@@ -26,23 +26,17 @@ import {
   SafeAreaView,
 } from 'react-native-safe-area-context';
 
-// ======================================================
-// APP LOGO
-// ======================================================
+// app logo
 
 const APP_LOGO = require('./assets/musanze-safe-market.png');
-const GROUP_CODE = 'MOB-G13-7792';
+const GROUP_CODE = 'MOB-G13-7341';
 
-// ======================================================
-// NAVIGATION
-// ======================================================
+// navigation
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-// ======================================================
-// COLORS
-// ======================================================
+// app colors
 
 const COLORS = {
   primary: '#2E7D32',
@@ -59,9 +53,7 @@ const COLORS = {
   gray: '#78909C',
 };
 
-// ======================================================
-// MARKET STALLS
-// ======================================================
+// market stalls
 
 const MARKET_ITEMS = [
   {
@@ -108,9 +100,7 @@ const MARKET_ITEMS = [
   },
 ];
 
-// ======================================================
-// PHONE VALIDATION
-// ======================================================
+// check phone number
 
 function validatePhone(value) {
   const pattern = /^(072|073|078|079)[0-9]{7}$/;
@@ -130,9 +120,7 @@ function validatePhone(value) {
   return '';
 }
 
-// ======================================================
-// COMMON COMPONENTS
-// ======================================================
+// common components
 
 function AppLogo({ size }) {
   return (
@@ -210,9 +198,7 @@ function RecordCountChip({ count }) {
   );
 }
 
-// ======================================================
-// MARKET CARD
-// ======================================================
+// market card
 
 function MarketCatalogCard({
   item,
@@ -269,9 +255,7 @@ function MarketCatalogCard({
   );
 }
 
-// ======================================================
-// STALL RECORD
-// ======================================================
+// stall record
 
 function StallVendorRecord({
   record,
@@ -354,9 +338,7 @@ function StallVendorRecord({
   );
 }
 
-// ======================================================
-// STALL RECORD PANEL
-// ======================================================
+// stall records
 
 function StallRecordsPanel({
   stall,
@@ -457,9 +439,7 @@ function StallRecordsPanel({
   );
 }
 
-// ======================================================
-// HOME SCREEN
-// ======================================================
+// home screen
 
 function HomeScreen({
   navigation,
@@ -674,9 +654,7 @@ function HomeScreen({
   );
 }
 
-// ======================================================
-// NEW INSPECTION SCREEN
-// ======================================================
+// new inspection screen
 
 function NewInspectionScreen({
   navigation,
@@ -703,9 +681,7 @@ function NewInspectionScreen({
   const [imagePickerBusy, setImagePickerBusy] =
     useState(false);
 
-  // ====================================================
-  // CLEAR FORM
-  // ====================================================
+  // clear form
 
   function clearForm() {
     setVendorAlias('');
@@ -723,9 +699,7 @@ function NewInspectionScreen({
     setReviewTimestamp(null);
   }
 
-  // ====================================================
-  // APPLY STALL FROM HOME
-  // ====================================================
+  // get stall from home
 
   useEffect(
     function () {
@@ -762,9 +736,7 @@ function NewInspectionScreen({
     [route ? route.params?.stall : undefined]
   );
 
-  // ====================================================
-  // CLEAR ERROR
-  // ====================================================
+  // clear error
 
   function clearError(field) {
     setErrors(function (previous) {
@@ -775,9 +747,7 @@ function NewInspectionScreen({
     });
   }
 
-  // ====================================================
-  // SELECT STALL
-  // ====================================================
+  // select stall
 
   function chooseStall(stall) {
     setSelectedStall(stall);
@@ -789,9 +759,7 @@ function NewInspectionScreen({
     clearError('category');
   }
 
-  // ====================================================
-  // CAMERA
-  // ====================================================
+  // open camera
 
   async function takePhoto() {
     if (imagePickerBusy) {
@@ -823,8 +791,7 @@ function NewInspectionScreen({
           mediaTypes: ['images'],
           allowsEditing: false,
 
-          // Lower quality for faster loading
-          // and lower memory usage.
+          // use smaller image quality
           quality: 0.45,
 
           exif: false,
@@ -848,9 +815,7 @@ function NewInspectionScreen({
     }
   }
 
-  // ====================================================
-  // GALLERY
-  // ====================================================
+  // open gallery
 
   async function chooseFromGallery() {
     if (imagePickerBusy) {
@@ -882,7 +847,7 @@ function NewInspectionScreen({
           mediaTypes: ['images'],
           allowsEditing: false,
 
-          // Lower quality for faster loading.
+          // use smaller image quality
           quality: 0.45,
 
           selectionLimit: 1,
@@ -907,9 +872,7 @@ function NewInspectionScreen({
     }
   }
 
-  // ====================================================
-  // VALIDATE FORM
-  // ====================================================
+  // check form
 
   function validateForm() {
     const newErrors = {};
@@ -957,9 +920,7 @@ function NewInspectionScreen({
     return Object.keys(newErrors).length === 0;
   }
 
-  // ====================================================
-  // SAVE INSPECTION
-  // ====================================================
+  // review and save inspection
 
   function handleSubmit() {
     if (!validateForm()) {
@@ -1017,10 +978,10 @@ function NewInspectionScreen({
     setShowReview(false);
     addRecord(newRecord);
 
-    // Clear immediately.
+    // clear form after saving
     clearForm();
 
-    // Remove Home stall parameter.
+    // remove selected stall from navigation
     navigation.setParams({
       stall: undefined,
     });
@@ -1051,9 +1012,7 @@ function NewInspectionScreen({
     );
   }
 
-  // ====================================================
-  // SCREEN
-  // ====================================================
+  // inspection form
 
   return (
     <SafeScreen>
@@ -1094,7 +1053,7 @@ function NewInspectionScreen({
 
           <View style={styles.formCard}>
 
-            {/* VENDOR ALIAS */}
+            {/* vendor alias */}
 
             <View style={styles.fieldGroup}>
               <Text style={styles.fieldLabel}>
@@ -1136,7 +1095,7 @@ function NewInspectionScreen({
               </ErrorText>
             </View>
 
-            {/* STALL */}
+            {/* stall */}
 
             <View style={styles.fieldGroup}>
               <Text style={styles.fieldLabel}>
@@ -1265,7 +1224,7 @@ function NewInspectionScreen({
               ) : null}
             </View>
 
-            {/* CATEGORY */}
+            {/* category */}
 
             <View style={styles.fieldGroup}>
               <Text style={styles.fieldLabel}>
@@ -1297,7 +1256,7 @@ function NewInspectionScreen({
               </ErrorText>
             </View>
 
-            {/* CONTACT NUMBER */}
+            {/* contact number */}
 
             <View style={styles.fieldGroup}>
               <Text style={styles.fieldLabel}>
@@ -1378,7 +1337,7 @@ function NewInspectionScreen({
               </ErrorText>
             </View>
 
-            {/* RISK LEVEL */}
+            {/* risk level */}
 
             <View style={styles.fieldGroup}>
               <Text style={styles.fieldLabel}>
@@ -1498,7 +1457,7 @@ function NewInspectionScreen({
                 </ErrorText>
               </View>
 
-            {/* PHOTO */}
+            {/* inspection photo */}
 
             <View style={styles.fieldGroup}>
               <View style={styles.photoLabelRow}>
@@ -1680,7 +1639,7 @@ function NewInspectionScreen({
               )}
             </View>
 
-            {/* CONSENT */}
+            {/* consent */}
 
             <Pressable
               onPress={function () {
@@ -1714,7 +1673,7 @@ function NewInspectionScreen({
               {errors.consent}
             </ErrorText>
 
-            {/* SAVE */}
+            {/* review button */}
 
             <Pressable
               onPress={handleSubmit}
@@ -1851,9 +1810,7 @@ function NewInspectionScreen({
   );
 }
 
-// ======================================================
-// RECORDS SCREEN
-// ======================================================
+// records screen
 
 function RecordsScreen({
   navigation,
@@ -2124,9 +2081,7 @@ function RecordsScreen({
   );
 }
 
-// ======================================================
-// DETAIL ROW
-// ======================================================
+// detail row
 
 function DetailRow({
   icon,
@@ -2156,9 +2111,7 @@ function DetailRow({
   );
 }
 
-// ======================================================
-// INSPECTION DETAILS
-// ======================================================
+// inspection details
 
 function InspectionDetailsScreen({
   route,
@@ -2387,9 +2340,7 @@ function InspectionDetailsScreen({
   );
 }
 
-// ======================================================
-// RECORDS STACK
-// ======================================================
+// records navigation
 
 function RecordsStackScreen({
   records,
@@ -2449,9 +2400,7 @@ function RecordsStackScreen({
   );
 }
 
-// ======================================================
-// MAIN TABS
-// ======================================================
+// main tabs
 
 function MainTabs({
   records,
@@ -2592,9 +2541,7 @@ function MainTabs({
   );
 }
 
-// ======================================================
-// APP
-// ======================================================
+// app
 
 export default function App() {
   const [records, setRecords] =
@@ -2621,9 +2568,7 @@ export default function App() {
   );
 }
 
-// ======================================================
-// STYLES
-// ======================================================
+// app styles
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -2645,9 +2590,7 @@ const styles = StyleSheet.create({
     opacity: 0.55,
   },
 
-  // ====================================================
-  // SCROLL
-  // ====================================================
+  // scroll styles
 
   scrollContent: {
     backgroundColor:
@@ -2669,9 +2612,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
 
-  // ====================================================
-  // HEADERS
-  // ====================================================
+  // header styles
 
   topHeader: {
     backgroundColor:
@@ -2740,9 +2681,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
 
-  // ====================================================
-  // HERO
-  // ====================================================
+  // hero styles
 
   heroCard: {
     flexDirection: 'row',
@@ -2785,9 +2724,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 
-  // ====================================================
-  // SEARCH
-  // ====================================================
+  // search styles
 
   searchContainer: {
     flexDirection: 'row',
@@ -2811,9 +2748,7 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
   },
 
-  // ====================================================
-  // SECTION
-  // ====================================================
+  // section styles
 
   sectionHeader: {
     flexDirection: 'row',
@@ -2834,9 +2769,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
 
-  // ====================================================
-  // CATALOG
-  // ====================================================
+  // catalog styles
 
   catalogGrid: {
     flexDirection: 'row',
@@ -2949,9 +2882,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 
-  // ====================================================
-  // HINT
-  // ====================================================
+  // hint styles
 
   homeHint: {
     flexDirection: 'row',
@@ -3000,9 +2931,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
 
-  // ====================================================
-  // STALL PANEL
-  // ====================================================
+  // stall panel styles
 
   stallPanel: {
     backgroundColor:
@@ -3092,9 +3021,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
 
-  // ====================================================
-  // VENDOR RECORD
-  // ====================================================
+  // vendor record styles
 
   vendorRecord: {
     flexDirection: 'row',
@@ -3195,9 +3122,7 @@ const styles = StyleSheet.create({
       COLORS.text,
   },
 
-  // ====================================================
-  // BUTTONS
-  // ====================================================
+  // button styles
 
   primaryButton: {
     minHeight: 46,
@@ -3219,9 +3144,7 @@ const styles = StyleSheet.create({
     marginLeft: 7,
   },
 
-  // ====================================================
-  // PAGE HEADER
-  // ====================================================
+  // page header styles
 
   pageHeader: {
     flexDirection: 'row',
@@ -3255,9 +3178,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
 
-  // ====================================================
-  // FORM
-  // ====================================================
+  // form styles
 
   formCard: {
     backgroundColor:
@@ -3351,9 +3272,7 @@ const styles = StyleSheet.create({
     lineHeight: 15,
   },
 
-  // ====================================================
-  // STALL SELECTOR
-  // ====================================================
+  // stall selector styles
 
   stallSelectorBox: {
     marginTop: 9,
@@ -3449,9 +3368,7 @@ const styles = StyleSheet.create({
       COLORS.primary,
   },
 
-  // ====================================================
-  // RISK
-  // ====================================================
+  // risk styles
 
   riskOptions: {
     flexDirection: 'row',
@@ -3521,9 +3438,7 @@ const styles = StyleSheet.create({
       COLORS.primary,
   },
 
-  // ====================================================
-  // PHOTO
-  // ====================================================
+  // photo styles
 
   photoLabelRow: {
     flexDirection: 'row',
@@ -3775,9 +3690,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
 
-  // ====================================================
-  // CONSENT
-  // ====================================================
+  // consent styles
 
   consentRow: {
     flexDirection: 'row',
@@ -3817,9 +3730,7 @@ const styles = StyleSheet.create({
     lineHeight: 17,
   },
 
-  // ====================================================
-  // SUBMIT
-  // ====================================================
+  // submit styles
 
   submitButton: {
     minHeight: 53,
@@ -3841,9 +3752,7 @@ const styles = StyleSheet.create({
     marginLeft: 7,
   },
 
-  // ====================================================
-  // RECORDS
-  // ====================================================
+  // records styles
 
   totalRecordsCard: {
     flexDirection: 'row',
@@ -3992,9 +3901,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
-  // ====================================================
-  // DETAILS
-  // ====================================================
+  // details styles
 
   detailsPhoto: {
     width: '100%',

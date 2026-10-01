@@ -10,7 +10,7 @@ Assignment 1 - Musanze Safe Market Field Inspection Prototype
 Group 13
 
 ## Verification Code
-MOB-G13-7792
+MOB-G13-7341
 
 ## Group Members
 1. NZAYISENGA Erneste - 25/27341

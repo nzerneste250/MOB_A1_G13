@@ -148,7 +148,7 @@ Responsibilities:
 
 ## GitHub Repository
 GitHub Repository URL:
-TO_BE_ADDED_AFTER_REPOSITORY_IS_CREATED
+https://github.com/nzerneste250/MOB_A1_G13
 
 ## Final Commit Hash
 Final Commit Hash:
